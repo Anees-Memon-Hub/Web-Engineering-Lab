@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlumniConnect | Directory</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container navbar">
+            <a class="logo" href="index.html">AlumniConnect</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a class="active" href="alumni.html">Alumni</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a class="profile-link" href="profile.html">Profile</a>
+                <a class="logout-link" href="index.html">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <section class="page-title">
+            <p class="eyebrow">Community Directory</p>
+            <h1>Alumni Directory</h1>
+            <p>Find graduates by name, batch, or department.</p>
+        </section>
+
+        <section class="directory panel">
+            <form class="search-box" action="#" method="get">
+                <label class="sr-only" for="search">Search alumni</label>
+                <input id="search" type="search" placeholder="Search alumni...">
+                <button class="btn primary" type="submit">Search</button>
+            </form>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Batch</th>
+                            <th>Department</th>
+                            <th>City</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Anees</td>
+                            <td>2022</td>
+                            <td>Computer Science</td>
+                            <td>Sukkur</td>
+                            <td><a class="small-btn" href="profile.html">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>Haseeb</td>
+                            <td>2021</td>
+                            <td>Software Engineering</td>
+                            <td>Lahore</td>
+                            <td><a class="small-btn" href="profile.html">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>Taraz</td>
+                            <td>2023</td>
+                            <td>Information Technology</td>
+                            <td>Islamabad</td>
+                            <td><a class="small-btn" href="profile.html">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>Tauseef</td>
+                            <td>2022</td>
+                            <td>Computer Science</td>
+                            <td>Karachi</td>
+                            <td><a class="small-btn" href="profile.html">View</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 AlumniConnect · Alumni Management System</p>
+        </div>
+    </footer>
+</body>
+</html>

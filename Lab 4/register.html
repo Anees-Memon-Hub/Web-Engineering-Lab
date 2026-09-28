@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlumniConnect | Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container navbar">
+            <a class="logo" href="index.html">AlumniConnect</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="alumni.html">Alumni</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a class="active" href="register.html">Register</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a class="profile-link" href="profile.html">Profile</a>
+                <a class="logout-link" href="index.html">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <section class="page-title">
+            <p class="eyebrow">Alumni Network</p>
+            <h1>Alumni Registration</h1>
+            <p>Add a graduate to the alumni management system.</p>
+        </section>
+
+        <section class="form-container panel">
+            <form action="#" method="post">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="full-name">Full Name</label>
+                        <input id="full-name" name="full_name" type="text" placeholder="Enter full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" placeholder="name@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="batch">Batch</label>
+                        <input id="batch" name="batch" type="number" min="1900" max="2100" placeholder="2022" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <select id="department" name="department" required>
+                            <option value="">Select department</option>
+                            <option>Computer Science</option>
+                            <option>Software Engineering</option>
+                            <option>Information Technology</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="organization">Current Organization</label>
+                        <input id="organization" name="organization" type="text" placeholder="Company / organization">
+                    </div>
+                </div>
+
+                <button class="btn primary submit-btn" type="submit">Register Alumni</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 AlumniConnect · Alumni Management System</p>
+        </div>
+    </footer>
+</body>
+</html>
