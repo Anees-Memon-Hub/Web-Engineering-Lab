@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alumni Directory</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="site-header">
+
+        <div class="container">
+
+            <h1>Alumni Management System</h1>
+
+            <nav>
+                <a href="/">Register</a>
+                <a href="/alumni">Alumni Directory</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+        <section class="page-heading">
+
+            <h2>Alumni Directory</h2>
+
+            <p>
+                View registered alumni and their professional information.
+            </p>
+
+        </section>
+
+
+        <% if (alumni && alumni.length > 0) { %>
+
+            <div class="alumni-grid">
+
+                <% alumni.forEach(person => { %>
+
+                    <article class="alumni-card">
+
+                        <!-- PROFILE IMAGE -->
+
+                        <div class="alumni-photo">
+
+                            <% if (person.profile_photo) { %>
+
+                                <img
+                                    src="/uploads/<%= person.profile_photo %>"
+                                    alt="<%= person.full_name %>"
+                                >
+
+                            <% } else { %>
+
+                                <div class="no-photo">
+                                    No Photo
+                                </div>
+
+                            <% } %>
+
+                        </div>
+
+
+                        <!-- BASIC INFORMATION -->
+
+                        <div class="alumni-content">
+
+                            <h3>
+                                <%= person.full_name %>
+                            </h3>
+
+                            <p class="alumni-email">
+                                <%= person.email %>
+                            </p>
+
+
+                            <div class="alumni-info">
+
+                                <p>
+                                    <strong>Student ID:</strong>
+                                    <%= person.student_id %>
+                                </p>
+
+                                <p>
+                                    <strong>Degree:</strong>
+                                    <%= person.degree %>
+                                </p>
+
+                                <p>
+                                    <strong>Department:</strong>
+                                    <%= person.department %>
+                                </p>
+
+                                <p>
+                                    <strong>Graduation:</strong>
+                                    <%= person.graduation_year %>
+                                </p>
+
+
+                                <% if (person.cgpa) { %>
+
+                                    <p>
+                                        <strong>CGPA:</strong>
+                                        <%= person.cgpa %>
+                                    </p>
+
+                                <% } %>
+
+
+                                <% if (person.city || person.country) { %>
+
+                                    <p>
+                                        <strong>Location:</strong>
+
+                                        <%= person.city || "" %>
+
+                                        <% if (person.city && person.country) { %>
+                                            ,
+                                        <% } %>
+
+                                        <%= person.country || "" %>
+                                    </p>
+
+                                <% } %>
+
+                            </div>
+
+
+                            <!-- EMPLOYMENT -->
+
+                            <% if (
+                                person.employment_status ||
+                                person.job_title ||
+                                person.current_job ||
+                                person.company
+                            ) { %>
+
+                                <div class="alumni-section">
+
+                                    <h4>Employment</h4>
+
+                                    <% if (person.employment_status) { %>
+
+                                        <p>
+                                            <strong>Status:</strong>
+                                            <%= person.employment_status %>
+                                        </p>
+
+                                    <% } %>
+
+
+                                    <% if (person.job_title) { %>
+
+                                        <p>
+                                            <strong>Job Title:</strong>
+                                            <%= person.job_title %>
+                                        </p>
+
+                                    <% } %>
+
+
+                                    <% if (person.current_job) { %>
+
+                                        <p>
+                                            <strong>Current Job:</strong>
+                                            <%= person.current_job %>
+                                        </p>
+
+                                    <% } %>
+
+
+                                    <% if (person.company) { %>
+
+                                        <p>
+                                            <strong>Company:</strong>
+                                            <%= person.company %>
+                                        </p>
+
+                                    <% } %>
+
+                                </div>
+
+                            <% } %>
+
+
+                            <!-- SKILLS -->
+
+                            <% if (person.skills) { %>
+
+                                <div class="alumni-section">
+
+                                    <h4>Skills</h4>
+
+                                    <p>
+                                        <%= person.skills %>
+                                    </p>
+
+                                </div>
+
+                            <% } %>
+
+
+                            <!-- BIO -->
+
+                            <% if (person.bio) { %>
+
+                                <div class="alumni-section">
+
+                                    <h4>About</h4>
+
+                                    <p>
+                                        <%= person.bio %>
+                                    </p>
+
+                                </div>
+
+                            <% } %>
+
+
+                            <!-- CONTACT -->
+
+                            <% if (person.contact_preference) { %>
+
+                                <p>
+                                    <strong>Preferred Contact:</strong>
+                                    <%= person.contact_preference %>
+                                </p>
+
+                            <% } %>
+
+
+                            <!-- LINKS -->
+
+                            <div class="alumni-links">
+
+                                <% if (person.linkedin_url) { %>
+
+                                    <a
+                                        href="<%= person.linkedin_url %>"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        LinkedIn
+                                    </a>
+
+                                <% } %>
+
+
+                                <% if (person.resume) { %>
+
+                                    <a
+                                        href="/uploads/<%= person.resume %>"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        View Resume
+                                    </a>
+
+                                <% } %>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                <% }); %>
+
+            </div>
+
+        <% } else { %>
+
+            <!-- EMPTY STATE -->
+
+            <section class="empty-state">
+
+                <h3>No Alumni Registered Yet</h3>
+
+                <p>
+                    There are currently no alumni records in the database.
+                </p>
+
+                <a
+                    href="/"
+                    class="btn btn-primary"
+                >
+                    Register First Alumni
+                </a>
+
+            </section>
+
+        <% } %>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                &copy; 2026 Alumni Management System
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
+

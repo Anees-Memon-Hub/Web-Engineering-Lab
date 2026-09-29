@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registration Successful</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="site-header">
+
+        <div class="container">
+
+            <h1>Alumni Management System</h1>
+
+            <nav>
+                <a href="/">Register</a>
+                <a href="/alumni">Alumni Directory</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= SUCCESS CONTENT ================= -->
+
+    <main class="container">
+
+        <section class="success-page">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>Registration Successful!</h2>
+
+            <p>
+                Congratulations, <strong><%= name %></strong>!
+            </p>
+
+            <p>
+                Your alumni profile has been successfully
+                registered in our database.
+            </p>
+
+
+            <!-- ================= REGISTRATION DETAILS ================= -->
+
+            <div class="registration-details">
+
+                <h3>Registration Details</h3>
+
+                <div class="detail-row">
+
+                    <span>Registration ID</span>
+
+                    <strong>
+                        #<%= registrationId %>
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>Name</span>
+
+                    <strong>
+                        <%= name %>
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>Email</span>
+
+                    <strong>
+                        <%= email %>
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= PROFILE IMAGE ================= -->
+
+            <% if (profileImage) { %>
+
+                <div class="profile-preview">
+
+                    <h3>Profile Image</h3>
+
+                    <img
+                        src="/uploads/<%= profileImage %>"
+                        alt="Profile Image"
+                    >
+
+                </div>
+
+            <% } %>
+
+
+            <!-- ================= ACTIONS ================= -->
+
+            <div class="success-actions">
+
+                <a
+                    href="/"
+                    class="btn btn-primary"
+                >
+                    Register Another Alumni
+                </a>
+
+                <a
+                    href="/alumni"
+                    class="btn btn-secondary"
+                >
+                    View Alumni Directory
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                &copy; 2026 Alumni Management System
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
+

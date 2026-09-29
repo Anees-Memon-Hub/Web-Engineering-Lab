@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alumni Registration</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="site-header">
+
+        <div class="container">
+
+            <h1>Alumni Management System</h1>
+
+            <nav>
+                <a href="/">Register</a>
+                <a href="/alumni">Alumni Directory</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+        <section class="page-heading">
+
+            <h2>Alumni Registration</h2>
+
+            <p>
+                Register your alumni profile and stay connected
+                with the university community.
+            </p>
+
+        </section>
+
+
+        <!-- ================= REGISTRATION FORM ================= -->
+
+        <form
+            action="/register"
+            method="POST"
+            enctype="multipart/form-data"
+            class="registration-form"
+        >
+
+            <!-- ================= PERSONAL INFORMATION ================= -->
+
+            <section class="form-section">
+
+                <h3>Personal Information</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="full_name">
+                            Full Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="full_name"
+                            name="full_name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email *
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@email.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone *
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="03001234567"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Gender *
+                        </label>
+
+                        <div class="radio-group">
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="Male"
+                                    required
+                                >
+                                Male
+                            </label>
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="Female"
+                                >
+                                Female
+                            </label>
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="Other"
+                                >
+                                Other
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="date_of_birth">
+                            Date of Birth *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date_of_birth"
+                            name="date_of_birth"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="city">
+                            City *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            placeholder="Enter city"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="country">
+                            Country *
+                        </label>
+
+                        <select
+                            id="country"
+                            name="country"
+                            required
+                        >
+
+                            <option value="">
+                                Select Country
+                            </option>
+
+                            <option value="Pakistan">
+                                Pakistan
+                            </option>
+
+                            <option value="India">
+                                India
+                            </option>
+
+                            <option value="United Arab Emirates">
+                                United Arab Emirates
+                            </option>
+
+                            <option value="United Kingdom">
+                                United Kingdom
+                            </option>
+
+                            <option value="United States">
+                                United States
+                            </option>
+
+                            <option value="Canada">
+                                Canada
+                            </option>
+
+                            <option value="Australia">
+                                Australia
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="address">
+                            Address
+                        </label>
+
+                        <textarea
+                            id="address"
+                            name="address"
+                            rows="3"
+                            placeholder="Enter your current address"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ACADEMIC INFORMATION ================= -->
+
+            <section class="form-section">
+
+                <h3>Academic Information</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="student_id">
+                            Student ID *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="student_id"
+                            name="student_id"
+                            placeholder="e.g. CS-001"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="degree">
+                            Degree *
+                        </label>
+
+                        <select
+                            id="degree"
+                            name="degree"
+                            required
+                        >
+
+                            <option value="">
+                                Select Degree
+                            </option>
+
+                            <option value="BS Computer Science">
+                                BS Computer Science
+                            </option>
+
+                            <option value="BS Software Engineering">
+                                BS Software Engineering
+                            </option>
+
+                            <option value="BS Information Technology">
+                                BS Information Technology
+                            </option>
+
+                            <option value="BBA">
+                                BBA
+                            </option>
+
+                            <option value="MBA">
+                                MBA
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="department">
+                            Department *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="department"
+                            name="department"
+                            placeholder="Computer Science"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="graduation_year">
+                            Graduation Year *
+                        </label>
+
+                        <select
+                            id="graduation_year"
+                            name="graduation_year"
+                            required
+                        >
+
+                            <option value="">
+                                Select Year
+                            </option>
+
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="cgpa">
+                            CGPA
+                        </label>
+
+                        <input
+                            type="number"
+                            id="cgpa"
+                            name="cgpa"
+                            min="0"
+                            max="4"
+                            step="0.01"
+                            placeholder="e.g. 3.50"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= EMPLOYMENT INFORMATION ================= -->
+
+            <section class="form-section">
+
+                <h3>Employment Information</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="employment_status">
+                            Employment Status
+                        </label>
+
+                        <select
+                            id="employment_status"
+                            name="employment_status"
+                        >
+
+                            <option value="">
+                                Select Status
+                            </option>
+
+                            <option value="Employed">
+                                Employed
+                            </option>
+
+                            <option value="Self-Employed">
+                                Self-Employed
+                            </option>
+
+                            <option value="Entrepreneur">
+                                Entrepreneur
+                            </option>
+
+                            <option value="Unemployed">
+                                Unemployed
+                            </option>
+
+                            <option value="Student">
+                                Student
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="job_title">
+                            Job Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="job_title"
+                            name="job_title"
+                            placeholder="e.g. Software Engineer"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="current_job">
+                            Current Job
+                        </label>
+
+                        <input
+                            type="text"
+                            id="current_job"
+                            name="current_job"
+                            placeholder="Enter current job"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="company">
+                            Company
+                        </label>
+
+                        <input
+                            type="text"
+                            id="company"
+                            name="company"
+                            placeholder="Company name"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= SKILLS & PROFILE ================= -->
+
+            <section class="form-section">
+
+                <h3>Skills & Profile</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group full-width">
+
+                        <label for="skills">
+                            Skills
+                        </label>
+
+                        <input
+                            type="text"
+                            id="skills"
+                            name="skills"
+                            placeholder="Java, Python, JavaScript, Machine Learning"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="bio">
+                            Bio
+                        </label>
+
+                        <textarea
+                            id="bio"
+                            name="bio"
+                            rows="5"
+                            placeholder="Tell us something about yourself..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="linkedin_url">
+                            LinkedIn Profile
+                        </label>
+
+                        <input
+                            type="url"
+                            id="linkedin_url"
+                            name="linkedin_url"
+                            placeholder="https://linkedin.com/in/username"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="contact_preference">
+                            Preferred Contact Method
+                        </label>
+
+                        <select
+                            id="contact_preference"
+                            name="contact_preference"
+                        >
+
+                            <option value="">
+                                Select Preference
+                            </option>
+
+                            <option value="Email">
+                                Email
+                            </option>
+
+                            <option value="Phone">
+                                Phone
+                            </option>
+
+                            <option value="LinkedIn">
+                                LinkedIn
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= FILE UPLOADS ================= -->
+
+            <section class="form-section">
+
+                <h3>Documents & Profile Photo</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="profile_image">
+                            Profile Image
+                        </label>
+
+                        <input
+                            type="file"
+                            id="profile_image"
+                            name="profile_image"
+                            accept="image/jpeg,image/png,image/webp"
+                        >
+
+                        <small>
+                            JPG, PNG or WEBP — Maximum 2 MB
+                        </small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="resume">
+                            Resume / CV
+                        </label>
+
+                        <input
+                            type="file"
+                            id="resume"
+                            name="resume"
+                            accept=".pdf,.doc,.docx"
+                        >
+
+                        <small>
+                            PDF, DOC or DOCX — Maximum 2 MB
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ACCOUNT ================= -->
+
+            <section class="form-section">
+
+                <h3>Account Security</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password *
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="confirm_password">
+                            Confirm Password *
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirm_password"
+                            name="confirm_password"
+                            placeholder="Confirm password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= PREFERENCES ================= -->
+
+            <section class="form-section">
+
+                <h3>Preferences</h3>
+
+                <div class="checkbox-group">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            name="newsletter"
+                            value="1"
+                        >
+
+                        Subscribe me to the alumni newsletter.
+
+                    </label>
+
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            name="terms_accepted"
+                            value="1"
+                            required
+                        >
+
+                        I agree to the Terms & Conditions. *
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= BUTTONS ================= -->
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Register Alumni
+                </button>
+
+                <button
+                    type="reset"
+                    class="btn btn-secondary"
+                >
+                    Reset Form
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                &copy; 2026 Alumni Management System
+            </p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
+
+
