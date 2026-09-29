@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Alumni Directory</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="container">
+
+        <h1>
+            Alumni Registration System
+        </h1>
+
+        <nav>
+
+            <a href="/">
+                Register
+            </a>
+
+            <a href="/alumni">
+                Alumni Directory
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="container directory-container">
+
+    <div class="page-heading">
+
+        <h2>
+            Alumni Directory
+        </h2>
+
+        <p>
+            Registered alumni members
+        </p>
+
+    </div>
+
+
+    <% if (alumni.length > 0) { %>
+
+        <div class="table-wrapper">
+
+            <table class="alumni-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Gender</th>
+                        <th>Student ID</th>
+                        <th>Degree</th>
+                        <th>Department</th>
+                        <th>Graduation</th>
+                        <th>Job</th>
+                        <th>Company</th>
+                        <th>Skills</th>
+                        <th>Location</th>
+                        <th>LinkedIn</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <% alumni.forEach(function(row) { %>
+
+                        <tr>
+
+                            <!-- PHOTO -->
+
+                            <td>
+
+                                <% if (row.profile_photo) { %>
+
+                                    <img
+                                        src="<%= row.profile_photo %>"
+                                        alt="Profile Photo"
+                                        class="profile-photo"
+                                    >
+
+                                <% } else { %>
+
+                                    <div class="no-photo">
+                                        N/A
+                                    </div>
+
+                                <% } %>
+
+                            </td>
+
+
+                            <!-- NAME -->
+
+                            <td>
+
+                                <strong>
+                                    <%= row.full_name %>
+                                </strong>
+
+                            </td>
+
+
+                            <!-- EMAIL -->
+
+                            <td>
+                                <%= row.email %>
+                            </td>
+
+
+                            <!-- PHONE -->
+
+                            <td>
+                                <%= row.phone %>
+                            </td>
+
+
+                            <!-- GENDER -->
+
+                            <td>
+                                <%= row.gender %>
+                            </td>
+
+
+                            <!-- STUDENT ID -->
+
+                            <td>
+                                <%= row.student_id %>
+                            </td>
+
+
+                            <!-- DEGREE -->
+
+                            <td>
+                                <%= row.degree %>
+                            </td>
+
+
+                            <!-- DEPARTMENT -->
+
+                            <td>
+                                <%= row.department %>
+                            </td>
+
+
+                            <!-- GRADUATION -->
+
+                            <td>
+                                <%= row.graduation_year %>
+                            </td>
+
+
+                            <!-- JOB -->
+
+                            <td>
+                                <%= row.current_job || "N/A" %>
+                            </td>
+
+
+                            <!-- COMPANY -->
+
+                            <td>
+                                <%= row.company || "N/A" %>
+                            </td>
+
+
+                            <!-- SKILLS -->
+
+                            <td class="skills-cell">
+                                <%= row.skills || "N/A" %>
+                            </td>
+
+
+                            <!-- LOCATION -->
+
+                            <td>
+                                <%= row.city %>,
+                                <%= row.country %>
+                            </td>
+
+
+                            <!-- LINKEDIN -->
+
+                            <td>
+
+                                <% if (row.linkedin_url) { %>
+
+                                    <a
+                                        href="<%= row.linkedin_url %>"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="linkedin-link"
+                                    >
+                                        View Profile
+                                    </a>
+
+                                <% } else { %>
+
+                                    N/A
+
+                                <% } %>
+
+                            </td>
+
+                        </tr>
+
+                    <% }); %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    <% } else { %>
+
+        <div class="empty-state">
+
+            <h3>
+                No Alumni Registered
+            </h3>
+
+            <p>
+                There are currently no alumni records.
+            </p>
+
+            <a href="/">
+                Register First Alumni
+            </a>
+
+        </div>
+
+    <% } %>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <p>
+        Alumni Registration System &copy; 2026
+    </p>
+
+</footer>
+
+</body>
+
+</html>
