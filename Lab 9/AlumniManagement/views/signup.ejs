@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sign up | Alumni Management</title><link rel="stylesheet" href="/style.css"></head>
+<body class="auth-page"><main class="auth-card"><div class="auth-brand">ALUMNI <span>HUB</span></div><h1>Create your account</h1><p class="auth-subtitle">Register to access the alumni management dashboard.</p>
+<% if (error) { %><div class="auth-error"><%= error %></div><% } %>
+<form method="POST" action="/signup"><label for="name">Full name</label><input id="name" name="name" type="text" autocomplete="name" maxlength="100" value="<%= name %>" required><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" value="<%= email %>" required><label for="password">Password</label><input id="password" name="password" type="password" minlength="8" autocomplete="new-password" required><small>Use at least 8 characters.</small><label for="confirm_password">Confirm password</label><input id="confirm_password" name="confirm_password" type="password" minlength="8" autocomplete="new-password" required><button class="auth-button" type="submit">Create account</button></form>
+<p class="auth-switch">Already registered? <a href="/login">Sign in</a></p></main></body></html>
