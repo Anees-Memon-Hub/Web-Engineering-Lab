@@ -1,0 +1,24 @@
+<%- include('partials/header', { title: 'Alumni Login', active: 'login' }) %>
+
+        <section class="form-container">
+            <h1>Alumni Login</h1>
+            <p class="form-subtext">Please enter your credentials below to access your alumni account.</p>
+
+            <% if (error) { %>
+                <div class="alert alert-error"><%= error %></div>
+            <% } %>
+
+            <form action="/login" method="POST">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="<%= email %>" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <p class="form-footer-text">Don't have an account yet? <a href="/register">Register here</a>.</p>
+        </section>
+
+<%- include('partials/footer') %>

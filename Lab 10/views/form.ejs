@@ -1,0 +1,193 @@
+<%- include('partials/header', { title: title, active: mode === 'register' ? 'register' : 'profile' }) %>
+<%
+    const isEdit = mode === 'edit';
+
+    // Current value of a field as text ('' if missing). Works for strings from
+    // a re-posted form AND for numbers/strings coming straight from the database.
+    const v = (name) => (values && values[name] !== undefined && values[name] !== null) ? String(values[name]) : '';
+
+    const degrees = ['BS Computer Science', 'BS Software Engineering', 'BS Information Technology',
+                     'BS Artificial Intelligence', 'MS Computer Science', 'MBA'];
+    const departments = ['Computer Science', 'Software Engineering', 'Information Technology',
+                         'Business Administration', 'Electrical Engineering'];
+    const allSkills = ['HTML', 'CSS', 'JavaScript', 'Node.js', 'PHP', 'Python', 'MySQL'];
+    const years = [];
+    for (let y = 2026; y >= 2015; y--) years.push(String(y));
+
+    // Skills arrive as an array (re-posted form with 2+ ticks), a string
+    // (one tick) or "HTML, CSS" (stored in the database). Normalise to an array.
+    const rawSkills = values ? values.skills : '';
+    const selectedSkills = Array.isArray(rawSkills)
+        ? rawSkills
+        : String(rawSkills || '').split(',').map((s) => s.trim()).filter(Boolean);
+
+    const newsletterOn = !!values && (values.newsletter === 1 || values.newsletter === '1');
+%>
+
+        <section class="form-container">
+            <h1><%= title %></h1>
+            <p class="form-subtext">
+                <%= isEdit ? 'Update your details. Leave a file field empty to keep your current file.' : 'Join our Alumni Community' %>
+            </p>
+
+            <% if (error) { %>
+                <div class="alert alert-error"><%= error %></div>
+            <% } %>
+
+            <form action="<%= action %>" method="POST" enctype="multipart/form-data">
+
+                <h2>Personal Information</h2>
+
+                <label for="full_name">Full Name</label>
+                <input type="text" id="full_name" name="full_name" value="<%= v('full_name') %>" placeholder="Enter your full name" required>
+
+                <label for="profile_photo">Profile Photo</label>
+                <% if (isEdit && current && current.profile_photo) { %>
+                    <div class="current-file">
+                        <img class="thumb" src="/uploads/<%= current.profile_photo %>" alt="Current photo">
+                        <span>Current photo. Choose a new file below to replace it.</span>
+                    </div>
+                <% } %>
+                <input type="file" id="profile_photo" name="profile_photo" accept="image/png, image/jpeg">
+                <p class="field-hint">JPG or PNG, max 2MB. Optional.</p>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" value="<%= v('email') %>" placeholder="alumni@example.com" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" value="<%= v('phone') %>" placeholder="03XXXXXXXXX" required>
+
+                <label>Gender</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="Male" <%= v('gender') === 'Male' ? 'checked' : '' %> required> Male</label>
+                    <label><input type="radio" name="gender" value="Female" <%= v('gender') === 'Female' ? 'checked' : '' %>> Female</label>
+                </div>
+
+                <label for="date_of_birth">Date of Birth</label>
+                <input type="date" id="date_of_birth" name="date_of_birth" value="<%= v('date_of_birth') %>" required>
+
+                <h2>Academic Information</h2>
+
+                <label for="student_id">Student ID / Registration No.</label>
+                <input type="text" id="student_id" name="student_id" value="<%= v('student_id') %>" placeholder="Enter student ID" required>
+
+                <label for="degree">Degree / Program</label>
+                <select id="degree" name="degree" required>
+                    <option value="">Select Degree</option>
+                    <% degrees.forEach(function(d) { %>
+                        <option <%= v('degree') === d ? 'selected' : '' %>><%= d %></option>
+                    <% }); %>
+                </select>
+
+                <label for="department">Department</label>
+                <select id="department" name="department" required>
+                    <option value="">Select Department</option>
+                    <% departments.forEach(function(d) { %>
+                        <option <%= v('department') === d ? 'selected' : '' %>><%= d %></option>
+                    <% }); %>
+                </select>
+
+                <label for="graduation_year">Graduation Year</label>
+                <select id="graduation_year" name="graduation_year" required>
+                    <option value="">Select Year</option>
+                    <% years.forEach(function(y) { %>
+                        <option <%= v('graduation_year') === y ? 'selected' : '' %>><%= y %></option>
+                    <% }); %>
+                </select>
+
+                <label>Degree Level</label>
+                <div class="radio-group">
+                    <% ['BS', 'MS', 'PhD'].forEach(function(level) { %>
+                        <label><input type="radio" name="degree_level" value="<%= level %>" <%= v('degree_level') === level ? 'checked' : '' %>> <%= level %></label>
+                    <% }); %>
+                </div>
+
+                <label for="cgpa">CGPA</label>
+                <input type="number" id="cgpa" name="cgpa" value="<%= v('cgpa') %>" min="0" max="4" step="0.01" placeholder="e.g. 3.45">
+
+                <h2>Skills</h2>
+                <div class="radio-group wrap">
+                    <% allSkills.forEach(function(skill) { %>
+                        <label><input type="checkbox" name="skills" value="<%= skill %>" <%= selectedSkills.includes(skill) ? 'checked' : '' %>> <%= skill %></label>
+                    <% }); %>
+                </div>
+
+                <h2>Employment Information</h2>
+
+                <label for="current_job">Current Job / Designation</label>
+                <input type="text" id="current_job" name="current_job" value="<%= v('current_job') %>" placeholder="e.g. Software Engineer">
+
+                <label for="company">Organization / Company</label>
+                <input type="text" id="company" name="company" value="<%= v('company') %>" placeholder="Enter organization name">
+
+                <label for="employment_status">Employment Status</label>
+                <select id="employment_status" name="employment_status">
+                    <option value="">Select Status</option>
+                    <% ['Student', 'Employed', 'Self Employed', 'Unemployed'].forEach(function(s) { %>
+                        <option <%= v('employment_status') === s ? 'selected' : '' %>><%= s %></option>
+                    <% }); %>
+                </select>
+
+                <label for="resume">Resume / CV</label>
+                <% if (isEdit && current && current.resume) { %>
+                    <div class="current-file">
+                        <a href="/uploads/documents/<%= current.resume %>" target="_blank">Current resume</a>
+                        <span>Choose a new file below to replace it.</span>
+                    </div>
+                <% } %>
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx">
+                <p class="field-hint">PDF, DOC, or DOCX, max 2MB. Optional.</p>
+
+                <h2>Contact & Profile</h2>
+
+                <label for="contact_preference">Preferred Contact Method</label>
+                <select id="contact_preference" name="contact_preference">
+                    <option value="">Select</option>
+                    <% ['Email', 'Phone', 'WhatsApp'].forEach(function(c) { %>
+                        <option <%= v('contact_preference') === c ? 'selected' : '' %>><%= c %></option>
+                    <% }); %>
+                </select>
+
+                <label for="linkedin">LinkedIn Profile</label>
+                <input type="url" id="linkedin" name="linkedin" value="<%= v('linkedin') %>" placeholder="https://linkedin.com/in/username">
+
+                <label for="bio">Short Bio</label>
+                <textarea id="bio" name="bio" rows="4" placeholder="Write a short introduction..."><%= v('bio') %></textarea>
+
+                <h2>Current Address</h2>
+
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" value="<%= v('city') %>" placeholder="Enter city" required>
+
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" value="<%= v('country') || 'Pakistan' %>" required>
+
+                <label for="address">Complete Address</label>
+                <textarea id="address" name="address" rows="4" placeholder="Enter current address"><%= v('address') %></textarea>
+
+                <% if (!isEdit) { %>
+                    <h2>Account Information</h2>
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" minlength="8" placeholder="At least 8 characters" required>
+
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" minlength="8" placeholder="Type the password again" required>
+                <% } %>
+
+                <h2>Confirmation</h2>
+                <div class="radio-group">
+                    <label><input type="checkbox" name="newsletter" value="1" <%= newsletterOn ? 'checked' : '' %>> Subscribe to Alumni Newsletter</label>
+                    <% if (!isEdit) { %>
+                        <label><input type="checkbox" name="terms_accepted" value="1" required> I agree to the Terms &amp; Conditions *</label>
+                    <% } %>
+                </div>
+
+                <button type="submit"><%= submitLabel %></button>
+                <% if (isEdit && current) { %>
+                    <a class="cancel-link" href="/view/<%= current.id %>">Cancel</a>
+                <% } %>
+            </form>
+        </section>
+
+<%- include('partials/footer') %>

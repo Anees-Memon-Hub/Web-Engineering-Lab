@@ -1,0 +1,54 @@
+<%- include('partials/header', { title: 'Alumni Management System', active: 'dashboard' }) %>
+
+        <section class="welcome">
+            <h1>Welcome, <%= user.name.split(' ')[0] %>!</h1>
+            <p>Manage your alumni network</p>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card">
+                <h3>Total Alumni</h3>
+                <p><%= stats.alumni %></p>
+            </div>
+            <div class="stat-card">
+                <h3>Events</h3>
+                <p><%= stats.events %></p>
+            </div>
+            <div class="stat-card">
+                <h3>Jobs Posted</h3>
+                <p><%= stats.jobs %></p>
+            </div>
+            <div class="stat-card">
+                <h3>New This Month</h3>
+                <p><%= stats.newThisMonth %></p>
+            </div>
+        </section>
+
+        <section class="recent-alumni">
+            <h2>Recent Alumni</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Batch</th>
+                        <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (recent.length > 0) { %>
+                        <% recent.forEach(function(person) { %>
+                            <tr>
+                                <td><a href="/view/<%= person.id %>"><%= person.full_name %></a></td>
+                                <td><%= person.graduation_year %></td>
+                                <td><%= person.department %></td>
+                            </tr>
+                        <% }); %>
+                    <% } else { %>
+                        <tr><td colspan="3">No alumni registered yet.</td></tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <p><a href="/alumni">View full directory &rarr;</a></p>
+        </section>
+
+<%- include('partials/footer') %>
