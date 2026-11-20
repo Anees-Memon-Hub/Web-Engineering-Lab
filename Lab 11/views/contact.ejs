@@ -1,0 +1,28 @@
+<%- include("partials/header", { title, active }) %>
+
+<section class="form-container">
+    <h2>Contact Administration</h2>
+    <p class="form-subtext">Send a message to the AlumniConnect administration team. Your account email will be included so the team can reply to you.</p>
+
+    <% if (error) { %>
+        <div class="alert alert-error"><%= error %></div>
+    <% } %>
+
+    <form action="/contact" method="POST">
+        <label for="sender">Your account</label>
+        <input id="sender" type="text" value="<%= user.name %>" disabled>
+
+        <label for="subject">Subject</label>
+        <input id="subject" name="subject" type="text" maxlength="150"
+               value="<%= values.subject %>" placeholder="What is this message about?" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="7" maxlength="5000"
+                  placeholder="Write your message here..." required><%= values.message %></textarea>
+
+        <button type="submit">Send Email</button>
+    </form>
+    <p class="form-footer-text">Your message will be sent securely through the configured SMTP account.</p>
+</section>
+
+<%- include("partials/footer") %>

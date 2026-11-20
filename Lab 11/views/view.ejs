@@ -1,0 +1,56 @@
+<%- include('partials/header', { title: alumnus.full_name, active: isOwner ? 'profile' : 'alumni' }) %>
+
+        <div class="profile-card">
+            <div class="profile-image">
+                <% if (alumnus.profile_photo) { %>
+                    <img src="/uploads/<%= alumnus.profile_photo %>" alt="Photo of <%= alumnus.full_name %>">
+                <% } else { %>
+                    <div class="profile-avatar"><%= alumnus.full_name.charAt(0).toUpperCase() %></div>
+                <% } %>
+            </div>
+            <h2><%= alumnus.full_name %></h2>
+            <p class="designation">
+                <%= alumnus.current_job || alumnus.employment_status || 'Alumnus' %><%= alumnus.company ? ' at ' + alumnus.company : '' %>
+            </p>
+            <% if (alumnus.bio) { %>
+                <p class="bio"><%= alumnus.bio %></p>
+            <% } %>
+            <div class="profile-info">
+                <p><strong>Batch:</strong> <%= alumnus.graduation_year %><%= alumnus.degree_level ? ' (' + alumnus.degree_level + ')' : '' %></p>
+                <p><strong>Degree:</strong> <%= alumnus.degree %></p>
+                <p><strong>Department:</strong> <%= alumnus.department %></p>
+                <% if (alumnus.cgpa) { %><p><strong>CGPA:</strong> <%= alumnus.cgpa %></p><% } %>
+                <% if (alumnus.employment_status) { %><p><strong>Status:</strong> <%= alumnus.employment_status %></p><% } %>
+                <p><strong>City:</strong> <%= alumnus.city %>, <%= alumnus.country %></p>
+                <p><strong>Email:</strong> <%= alumnus.email %></p>
+                <% if (alumnus.phone) { %><p><strong>Phone:</strong> <%= alumnus.phone %></p><% } %>
+                <% if (alumnus.contact_preference) { %><p><strong>Prefers contact via:</strong> <%= alumnus.contact_preference %></p><% } %>
+                <% if (alumnus.linkedin) { %><p><strong>LinkedIn:</strong> <a href="<%= alumnus.linkedin %>" target="_blank" rel="noopener">View Profile</a></p><% } %>
+            </div>
+            <% if (alumnus.skills) { %>
+                <div class="skills-list">
+                    <% alumnus.skills.split(', ').forEach(function(skill) { %>
+                        <span class="skill-tag"><%= skill %></span>
+                    <% }); %>
+                </div>
+            <% } %>
+            <div class="profile-actions">
+                <a href="mailto:<%= alumnus.email %>">Contact</a>
+                <a href="/alumni">Directory</a>
+                <% if (alumnus.resume) { %>
+                    <a href="/uploads/documents/<%= alumnus.resume %>" target="_blank">Resume</a>
+                <% } %>
+                <a href="/pdf/<%= alumnus.id %>" target="_blank">Download PDF</a>
+            </div>
+            <% if (isOwner) { %>
+                <div class="profile-actions owner-actions">
+                    <a href="/edit/<%= alumnus.id %>">Edit Profile</a>
+                    <form action="/delete/<%= alumnus.id %>" method="POST"
+                          onsubmit="return confirm('Delete your alumni record permanently? This cannot be undone.');">
+                        <button type="submit" class="danger">Delete Account</button>
+                    </form>
+                </div>
+            <% } %>
+        </div>
+
+<%- include('partials/footer') %>

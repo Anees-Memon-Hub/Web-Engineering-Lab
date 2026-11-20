@@ -1,0 +1,29 @@
+<%- include("partials/header", { title, active }) %>
+
+<section class="chat-page">
+    <h2>Alumni Chat</h2>
+    <p class="form-subtext">Talk to other alumni in real time. Messages are visible to everyone who is signed in.</p>
+
+    <div class="chat-layout">
+        <div class="chat-box">
+            <div class="chat-status" id="chatStatus">Connecting...</div>
+            <div id="chatMessages" class="chat-messages" aria-live="polite"></div>
+            <div id="typingIndicator" class="chat-typing"></div>
+            <div class="chat-input-row">
+                <input id="messageInput" type="text" maxlength="500" autocomplete="off"
+                       placeholder="Type your message..." disabled>
+                <button id="sendButton" type="button" disabled>Send</button>
+            </div>
+        </div>
+
+        <aside class="chat-online">
+            <h3>Online <span id="onlineCount">0</span></h3>
+            <ul id="onlineList"></ul>
+        </aside>
+    </div>
+</section>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>
+
+<%- include("partials/footer") %>

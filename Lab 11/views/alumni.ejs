@@ -1,0 +1,92 @@
+<%- include('partials/header', { title: 'Alumni Directory', active: 'alumni' }) %>
+
+        <section class="directory">
+            <h1>Alumni Directory</h1>
+
+            <form class="search-box" action="/alumni" method="GET">
+                <input type="text" name="q" value="<%= q %>" placeholder="Search by name, email, department, company or city...">
+                <button type="submit">Search</button>
+                <% if (q) { %><a class="clear-link" href="/alumni">Clear</a><% } %>
+            </form>
+
+            <div class="toolbar">
+                <span><%= alumni.length %> record<%= alumni.length === 1 ? '' : 's' %><%= q ? ' found' : '' %></span>
+                <a class="pill-link" href="/pdf<%= q ? '?q=' + encodeURIComponent(q) : '' %>" target="_blank">Download PDF list</a>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Student ID</th>
+                            <th>Degree</th>
+                            <th>Department</th>
+                            <th>Graduation</th>
+                            <th>CGPA</th>
+                            <th>Job</th>
+                            <th>Company</th>
+                            <th>City</th>
+                            <th>Country</th>
+                            <th>Resume</th>
+                            <th>Registered</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (alumni.length > 0) { %>
+                            <% alumni.forEach(function(a) { %>
+                                <tr>
+                                    <td>
+                                        <% if (a.profile_photo) { %>
+                                            <img class="thumb" src="/uploads/<%= a.profile_photo %>" alt="">
+                                        <% } else { %>
+                                            <span class="thumb thumb-placeholder"><%= a.full_name.charAt(0).toUpperCase() %></span>
+                                        <% } %>
+                                    </td>
+                                    <td><%= a.id %></td>
+                                    <td><a href="/view/<%= a.id %>"><%= a.full_name %></a></td>
+                                    <td><%= a.email %></td>
+                                    <td><%= a.phone %></td>
+                                    <td><%= a.student_id %></td>
+                                    <td><%= a.degree %></td>
+                                    <td><%= a.department %></td>
+                                    <td><%= a.graduation_year %></td>
+                                    <td><%= a.cgpa || '-' %></td>
+                                    <td><%= a.current_job %></td>
+                                    <td><%= a.company %></td>
+                                    <td><%= a.city %></td>
+                                    <td><%= a.country %></td>
+                                    <td>
+                                        <% if (a.resume) { %>
+                                            <a href="/uploads/documents/<%= a.resume %>" target="_blank">View</a>
+                                        <% } else { %>
+                                            -
+                                        <% } %>
+                                    </td>
+                                    <td><%= a.created_at %></td>
+                                    <td class="row-actions">
+                                        <a href="/view/<%= a.id %>">View</a>
+                                        <% if (user && user.id === a.id) { %>
+                                            <a href="/edit/<%= a.id %>">Edit</a>
+                                            <form action="/delete/<%= a.id %>" method="POST"
+                                                  onsubmit="return confirm('Delete your alumni record permanently? This cannot be undone.');">
+                                                <button type="submit" class="link-danger">Delete</button>
+                                            </form>
+                                        <% } %>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <tr><td colspan="17"><%= q ? 'No alumni match "' + q + '".' : 'No alumni registered yet.' %></td></tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+<%- include('partials/footer') %>
